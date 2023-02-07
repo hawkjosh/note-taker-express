@@ -1,6 +1,6 @@
 const notes = require('express').Router()
-import { readNote, writeNote, updateNote } from './fsUtilities.js'
-import { v4 as uuidv4 } from 'uuid'
+const { readNote, writeNote, updateNote } = require('./fsUtilities.js')
+const { v4: uuidv4 } = require('uuid')
 
 // Route for retrieving all notes
 notes.get('/get', (req, res) => {
@@ -34,4 +34,4 @@ notes.delete('/delete/:id', (req, res) => {
 		})
 })
 
-export default notes
+module.exports = notes

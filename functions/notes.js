@@ -1,4 +1,4 @@
-import express from 'express'
+const express = require('express')
 const serverless = require('serverless-http')
 const path = require('path')
 const api = require('./helpers/index.js')

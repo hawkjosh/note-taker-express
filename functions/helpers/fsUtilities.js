@@ -1,12 +1,12 @@
-import { readFile, writeFile } from 'fs'
-import { promisify } from 'util'
+const fs = require('fs')
+const util = require('util')
 
 // Setting up ability to display existing notes using fs.readFile
 const readNote = util.promisify(fs.readFile)
 
 // Setting up ability to post new note using fs.writeFile
 const writeNote = (destination, content) =>
-	writeFile(destination, JSON.stringify(content, null, 4), (error) => {
+	fs.writeFile(destination, JSON.stringify(content, null, 4), (error) => {
 		if (error) {
 			return
 		}
@@ -14,7 +14,7 @@ const writeNote = (destination, content) =>
 
 // Setting up ability to delete note using combination of fs.readFile and fs.writeFile
 const updateNote = (content, file) => {
-	readFile(file, 'utf8', (error, data) => {
+	fs.readFile(file, 'utf8', (error, data) => {
 		if (error) {
 			return
 		} else {
@@ -25,4 +25,4 @@ const updateNote = (content, file) => {
 	})
 }
 
-export default { readNote, writeNote, updateNote }
+module.exports = { readNote, writeNote, updateNote }
